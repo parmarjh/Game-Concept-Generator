@@ -1,68 +1,68 @@
-# Game Concept Generator 
+# Game Concept Generator
 
-🎮 **Game Concept Generator** es una aplicación web interactiva construida con Streamlit que permite a los desarrolladores y diseñadores de videojuegos crear y gestionar conceptos de juego de manera eficiente. La herramienta facilita la generación de ideas creativas, la organización de proyectos y la documentación necesaria para llevar a cabo el desarrollo de un videojuego.
+🎮 **Game Concept Generator** is an interactive web application built with Streamlit that enables game developers and designers to create and manage game concepts efficiently. This tool facilitates creative idea generation, project organization, and the necessary documentation for game development.
 
-## Características
+## Features
 
-- **Gestión de Proyectos**: Crea y gestiona múltiples proyectos de videojuegos con información detallada sobre tipo de juego, estilo artístico, audiencia objetivo y mecánicas centrales.
-- **Generación de Conceptos**: Genera conceptos para diferentes aspectos del juego, como personajes, entornos, mecánicas y más, con la posibilidad de agregar imágenes de referencia.
+- **Project Management**: Create and manage multiple game projects with detailed information about game type, art style, target audience, and core mechanics.
+- **Concept Generation**: Generate concepts for different aspects of the game, such as characters, environments, mechanics, and more, with the option to add reference images.
 
-## Requisitos
+## Requirements
 
-Para ejecutar esta aplicación, asegúrate de tener instalado lo siguiente:
+To run this application, ensure you have the following installed:
 
-- Python 3.8 o superior
+- Python 3.8 or higher
 - Streamlit
 - Plotly
 - Pillow
 
-## Instalación
+## Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/tu_usuario/game-concept-generator.git
+   git clone https://github.com/reewos/game-concept-generator.git
    cd game-concept-generator
    ```
 
-2. Crea un entorno virtual (opcional):
+2. Create a virtual environment (optional):
    ```bash
    python -m venv venv
-   source venv/bin/activate  # En Linux/Mac
-   venv\Scripts\activate     # En Windows
+   source venv/bin/activate  # On Linux/Mac
+   venv\Scripts\activate     # On Windows
    ```
 
-3. Instala las dependencias:
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-## Uso
+## Usage
 
-Para iniciar la aplicación, ejecuta el siguiente comando en la terminal:
+To start the application, run the following command in the terminal:
 
 ```bash
 streamlit run Home.py
 ```
 
-Luego, abre tu navegador y navega a `http://localhost:8501` para acceder a la herramienta.
+Then, open your browser and navigate to `http://localhost:8501` to access the tool.
 
-## Estructura del Proyecto
+## Project Structure
 
-- `Home.py`: Archivo principal que contiene la lógica de la aplicación Streamlit.
-- `requirements.txt`: Lista de dependencias del proyecto.
-- `README.md`: Documentación del proyecto.
+- `Home.py`: Main file containing the Streamlit app logic.
+- `requirements.txt`: Project dependency list.
+- `README.md`: Project documentation.
 
-## Contribuciones
+## Contributions
 
-¡Las contribuciones son bienvenidas! Si tienes sugerencias o mejoras, no dudes en abrir un problema o enviar un pull request.
+Contributions are welcome! If you have suggestions or improvements, feel free to open an issue or submit a pull request.
 
-## Licencia
+## License
 
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-## Contacto
+## Contact
 
-Para consultas, puedes contactarme a través de:
+For inquiries, feel free to contact me via:
 
 - LinkedIn: [Reewos Talla Chumpitaz](https://www.linkedin.com/in/reewos-talla-chumpitaz/)
 - GitHub: [reewos](https://github.com/reewos)
