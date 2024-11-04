@@ -1,0 +1,26 @@
+{
+    "project_name": "Galactic Quest",
+    "project_type": "Action RPG",
+    "art_style": "Pixel Art",
+    "target_audience": "Teens and Adults",
+    "target_platform": ["PC", "Mobile", "Console"],
+    "team_size": "Medium (6-15)",
+    "core_game_elements": {
+      "high_concept": "Explore the galaxy and build your empire in a pixel-art universe!",
+      "mechanics": [
+        "Space exploration",
+        "Resource management",
+        "Turn-based combat",
+        "Character customization"
+      ],
+      "unique_selling_points": [
+        "Unique space factions with different powers",
+        "Procedurally generated galaxies",
+        "Dynamic NPC interactions",
+        "Multiplayer mode with co-op and PVP"
+      ]
+    },
+    "project_status": "Pre-production",
+    "budget_range": "$50K - $200K"
+  }
+  
