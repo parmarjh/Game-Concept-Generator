@@ -56,7 +56,7 @@ Then, open your browser and navigate to `http://localhost:8501` to access the to
 
 ## Video Presentation
 
-[![Video Presentation](resources/cover_image.png)](resources/Game%20Concept%20Generator.mp4)
+[![Video Presentation](https://raw.githubusercontent.com/reewos/Game-Concept-Generator/refs/heads/main/resources/cover_image.png)](https://github.com/reewos/Game-Concept-Generator/raw/refs/heads/main/resources/Game%20Concept%20Generator.mp4)
 
 
 ## Contributions
