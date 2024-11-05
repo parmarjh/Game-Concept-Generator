@@ -1,7 +1,12 @@
+import os
 from datetime import datetime 
 import streamlit as st
 
 from classes.game import GameProjectManager, ProjectType, ArtStyle, ConceptType, GameConcept
+
+# Initialize session state
+if 'ARIA_API_KEY' not in st.session_state:
+    st.session_state['ARIA_API_KEY'] = os.getenv('RHYMESAI_API_KEY')
 
 with st.sidebar:
     ARIA_API_KEY = st.text_input("Ingresa tu Rhymes AI API Key", type="password", value=st.session_state['ARIA_API_KEY'])
@@ -9,12 +14,9 @@ with st.sidebar:
         st.session_state['ARIA_API_KEY'] = ARIA_API_KEY
         st.success("API Key ingresada correctamente.")
 
-
-
 st.header("📂 Project Management")
 
 # Project Creation
-# if st.button("➕ Create New Project"):
 with st.expander("➕ Create New Project"):
     with st.form("new_project"):
         cols = st.columns(2)
@@ -66,7 +68,7 @@ with st.expander("➕ Create New Project"):
             st.success(f"Project '{project_name}' created successfully! 🎉")
 
 # Project Selection
-if st.session_state['projects']:
+if 'projects' in st.session_state:
     projects = list(st.session_state.project_manager.projects.values())
     projects = sorted(st.session_state['projects'], key=lambda x: x.name)
     st.divider()
@@ -81,31 +83,31 @@ if st.session_state['projects']:
         st.info(f"Status: {st.session_state['selected_project'].project_status}")
         st.caption(f"Created: {datetime.strptime(st.session_state['selected_project'].created_at ,'%Y-%m-%dT%H:%M:%S.%f').strftime('%Y-%m-%d')}")
     
-    cols = st.columns([2, 1])
-    with cols[0]:
-        st.subheader("Project Summary")
-        st.write(f"**High Concept:** {st.session_state['selected_project'].high_concept}")
-        
-        st.write("**Unique Selling Points:**")
-        for i, usp in enumerate(st.session_state['selected_project'].unique_selling_points, 1):
-            if usp.strip():
-                st.write(f"{i}. {usp}")
-        
-        st.write("**Core Mechanics:**")
-        for mech in st.session_state['selected_project'].core_mechanics:
-            if mech.strip():
-                st.write(f"- {mech}")
+        cols = st.columns([2, 1])
+        with cols[0]:
+            st.subheader("Project Summary")
+            st.write(f"**High Concept:** {st.session_state['selected_project'].high_concept}")
+            
+            st.write("**Unique Selling Points:**")
+            for i, usp in enumerate(st.session_state['selected_project'].unique_selling_points, 1):
+                if usp.strip():
+                    st.write(f"{i}. {usp}")
+            
+            st.write("**Core Mechanics:**")
+            for mech in st.session_state['selected_project'].core_mechanics:
+                if mech.strip():
+                    st.write(f"- {mech}")
 
-    with cols[1]:
-        # Project Metadata Card
-        st.markdown("### 📋 Project Details")
-        meta_data = {
-            "Genre": st.session_state['selected_project'].project_type.value,
-            "Art Style": st.session_state['selected_project'].art_style.value,
-            "Target Audience": st.session_state['selected_project'].target_audience,
-            "Team Size": st.session_state['selected_project'].team_size,
-            "Budget": st.session_state['selected_project'].budget_range,
-            "Platforms": ", ".join(st.session_state['selected_project'].target_platform)
-        }
-        for key, value in meta_data.items():
-            st.write(f"**{key}:** {value}")
+        with cols[1]:
+            # Project Metadata Card
+            st.markdown("### 📋 Project Details")
+            meta_data = {
+                "Genre": st.session_state['selected_project'].project_type.value,
+                "Art Style": st.session_state['selected_project'].art_style.value,
+                "Target Audience": st.session_state['selected_project'].target_audience,
+                "Team Size": st.session_state['selected_project'].team_size,
+                "Budget": st.session_state['selected_project'].budget_range,
+                "Platforms": ", ".join(st.session_state['selected_project'].target_platform)
+            }
+            for key, value in meta_data.items():
+                st.write(f"**{key}:** {value}")

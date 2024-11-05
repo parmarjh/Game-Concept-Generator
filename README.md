@@ -20,7 +20,7 @@ To run this application, ensure you have the following installed:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/reewos/game-concept-generator.git
+   git clone https://github.com/reewos/Game-Concept-Generator.git
    cd game-concept-generator
    ```
 

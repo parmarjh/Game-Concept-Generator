@@ -20,19 +20,58 @@ def initialize_database():
 
     try:
         # Crear tablas
+        # c.execute('''
+        #     CREATE TABLE IF NOT EXISTS projects (
+        #         id TEXT PRIMARY KEY, name TEXT, project_type TEXT, art_style TEXT,
+        #         target_audience TEXT, core_mechanics TEXT, high_concept TEXT,
+        #         unique_selling_points TEXT, target_platform TEXT, team_size TEXT,
+        #         budget_range TEXT, created_at TEXT, project_status TEXT
+        #     )
+        # ''')
+        # c.execute('''
+        #     CREATE TABLE IF NOT EXISTS concepts (
+        #         id TEXT PRIMARY KEY, project_id TEXT, type TEXT, name TEXT, description TEXT,
+        #         generated_video TEXT, reference_links TEXT,
+        #         FOREIGN KEY (project_id) REFERENCES projects (id)
+        #     )
+        # ''')
+
+        # Crear tabla para los proyectos
         c.execute('''
             CREATE TABLE IF NOT EXISTS projects (
-                id TEXT PRIMARY KEY, name TEXT, project_type TEXT, art_style TEXT,
-                target_audience TEXT, core_mechanics TEXT, high_concept TEXT,
-                unique_selling_points TEXT, target_platform TEXT, team_size TEXT,
-                budget_range TEXT, created_at TEXT, project_status TEXT
+                id TEXT PRIMARY KEY,
+                name TEXT,
+                project_type TEXT,
+                art_style TEXT,
+                target_audience TEXT,
+                core_mechanics TEXT,
+                high_concept TEXT,
+                unique_selling_points TEXT,
+                target_platform TEXT,
+                team_size TEXT,
+                budget_range TEXT,
+                created_at TEXT,
+                project_status TEXT
             )
         ''')
+
+        # Crear tabla para los conceptos
         c.execute('''
             CREATE TABLE IF NOT EXISTS concepts (
-                id TEXT PRIMARY KEY, project_id TEXT, type TEXT, name TEXT, description TEXT,
-                generated_video TEXT, reference_links TEXT,
-                FOREIGN KEY (project_id) REFERENCES projects (id)
+                id TEXT PRIMARY KEY,
+                project_id TEXT,
+                type TEXT,
+                name TEXT,
+                description TEXT,
+                reference_links TEXT,
+                generated_video TEXT,
+                variations TEXT,
+                metadata TEXT,
+                concept_art TEXT,
+                feedback_notes TEXT,
+                iteration_history TEXT,
+                related_concepts TEXT,
+                FOREIGN KEY(project_id) REFERENCES projects(id)
             )
         ''')
 
@@ -65,24 +104,6 @@ def initialize_database():
 
     conn.close()
 
-
-def load_concepts_from_db(project_id):
-    conn = sqlite3.connect("game_project.db")
-    c = conn.cursor()
-    c.execute('SELECT * FROM concepts WHERE project_id = ?', (project_id,))
-    concepts_data = c.fetchall()
-    concepts = []
-    for concept_data in concepts_data:
-        concepts.append(GameConcept(
-            type=ConceptType(concept_data[2]),
-            name=concept_data[3],
-            description=concept_data[4],
-            generated_video=concept_data[5],
-            references=concept_data[6].split("\n")
-        ))
-    conn.close()
-    return concepts
-
 try:
     initialize_database()
 except Exception as e:
@@ -98,30 +119,11 @@ if 'project_manager' not in st.session_state:
 # Streamlit App Layout
 def main():
     
-    # Custom CSS
-    # st.markdown("""
-    #     <style>
-    #     .stTabs [data-baseweb="tab-list"] {
-    #         gap: 2px;
-    #     }
-    #     .stTabs [data-baseweb="tab"] {
-    #         padding: 10px 20px;
-    #         background-color: #262730;
-    #     }
-    #     .stTabs [aria-selected="true"] {
-    #         background-color: #0E1117;
-    #     }
-    #     </style>
-    # """, unsafe_allow_html=True)
-    
     with st.sidebar:
-        ARIA_API_KEY = st.text_input("Ingresa tu Rhymes AI API Key", type="password", value=st.session_state['ARIA_API_KEY'])
+        ARIA_API_KEY = st.text_input("Enter your Rhymes AI API Key", type="password", value=st.session_state['ARIA_API_KEY'])
         if ARIA_API_KEY:
             st.session_state['ARIA_API_KEY'] = ARIA_API_KEY
-            st.success("API Key ingresada correctamente.")
-
-    # Main Title with Emoji
-    # st.title("🎮 Game Concept Generator & Prototyping Tool")
+            st.success("API Key entered correctly.")
 
     # Mostrar el contenido en Streamlit usando Markdown
     st.markdown(readme_content, unsafe_allow_html=True)

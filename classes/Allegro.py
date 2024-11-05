@@ -16,27 +16,28 @@ class Allegro:
             "Content-Type": "application/json"
         }
 
-    async def generate_video(self, data: Dict[str, Union[str, int, float]]) -> Union[Dict, str]:
+    def generate_video(self, data: Dict[str, Union[str, int, float]]) -> Union[Dict, str]:
         """Generate a video based on the provided data."""
         headers = self._get_headers()
         try:
-            async with httpx.AsyncClient() as client:
-                response = await client.post(self.api_url_generate, headers=headers, json=data)
+            with httpx.Client() as client:
+                response = client.post(self.api_url_generate, headers=headers, json=data)
             response.raise_for_status()
             self.request_id = response.json().get("data")
+            print(response.json().get("data"))
             return response.json()
         except httpx.HTTPStatusError as e:
             return f"Request failed with status {e.response.status_code}: {e.response.text}"
         except httpx.RequestError as e:
             return f"Request error: {str(e)}"
 
-    async def query_video_status(self, request_id: str) -> Union[Dict, str]:
+    def query_video_status(self, request_id: str) -> Union[Dict, str]:
         """Check the status of a video generation request by ID."""
         headers = self._get_headers()
         params = {"requestId": request_id}
         try:
-            async with httpx.AsyncClient() as client:
-                response = await client.get(self.api_url_query, headers=headers, params=params)
+            with httpx.Client() as client:
+                response = client.get(self.api_url_query, headers=headers, params=params)
             response.raise_for_status()
             self.video_url = response.json().get("data")
             return response.json()

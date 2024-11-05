@@ -114,3 +114,21 @@ class GameProjectManager:
         conn.close()
 
         return project
+    
+    def add_concept(self, project_id: str, concept: GameConcept):
+        conn = sqlite3.connect('game_project.db')
+        c = conn.cursor()
+
+        # Guardar en SQLite
+        c.execute('''
+            INSERT INTO concepts (id, project_id, type, name, description, reference_links,
+            generated_video, variations, metadata, concept_art, feedback_notes,
+            iteration_history, related_concepts) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (concept.id, project_id, concept.type.value, concept.name, concept.description,
+              "\n".join(concept.references), concept.generated_video,
+              "\n".join(map(str, concept.variations)), str(concept.metadata),
+              "\n".join(concept.concept_art), "\n".join(concept.feedback_notes),
+              "\n".join(map(str, concept.iteration_history)), "\n".join(concept.related_concepts)))
+        conn.commit()
+        conn.close()
