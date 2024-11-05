@@ -16,6 +16,8 @@ To run this application, ensure you have the following installed:
 - Plotly
 - Pillow
 
+You also need to have a Rhymes AI API key to use this app.
+
 ## Installation
 
 1. Clone the repository:
@@ -51,6 +53,11 @@ Then, open your browser and navigate to `http://localhost:8501` to access the to
 - `Home.py`: Main file containing the Streamlit app logic.
 - `requirements.txt`: Project dependency list.
 - `README.md`: Project documentation.
+
+## Video Presentation
+
+[![Video Presentation](resources/cover_image.png)](resources/Game%20Concept%20Generator.mp4)
+
 
 ## Contributions
 
